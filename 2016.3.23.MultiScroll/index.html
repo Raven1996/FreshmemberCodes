@@ -10,6 +10,26 @@ var nowindex=0;
 var ismoving=false;
 var mousewheel=document.all?"mousewheel":"DOMMouseScroll";
 
+$(document).ready(function(){
+
+	$(".leftchild").each(function(index, value){
+		$(this).css('top', index + '00%');
+	});
+	
+	$(".rightchild").each(function(index, value){
+		$(this).css('bottom', index + '00%');
+	});
+	
+	$("a.top").click(function(){
+		if (!ismoving){
+			ismoving=true;
+			nowindex=$(this).index();
+			makeActive(nowindex);
+			multiScroll(nowindex);
+			setTimeout("ismoving = false;", 200);
+			}
+	});
+
 var scrollFunc=function(e){
     e=e || window.event;
 	var t;
@@ -51,28 +71,6 @@ function multiScroll(nowindex){
 		$(this).animate({bottom: (index-nowindex)+'00%'}, 500);
 	});
 }
-
-$(document).ready(function(){
-
-	$(".leftchild").each(function(index, value){
-		$(this).css('top', index + '00%');
-	});
-	
-	$(".rightchild").each(function(index, value){
-		$(this).css('bottom', index + '00%');
-	});
-	
-	$("a.top").click(function(){
-		if (!ismoving){
-			ismoving=true;
-			nowindex=$(this).index();
-			makeActive(nowindex);
-			multiScroll(nowindex);
-			setTimeout("ismoving = false;", 200);
-			}
-	});
-	
-	
 
 });
 </script>
