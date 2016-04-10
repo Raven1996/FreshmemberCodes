@@ -20,26 +20,37 @@ var scrollFunc=function(e){
     }
 	
 	if (!ismoving){
+		var flag=0;
 		if (t>0){
-			if(nowindex>0) nowindex--;
-		}else if(nowindex<2){
-			nowindex++;
+			if(nowindex>0){
+				nowindex--;
+				flag=1;
+			}
+		}else{
+			if(nowindex<2){
+				nowindex++;
+				flag=1;
+			}
 		}
-		ismoving=true;
-		makeActive(nowindex);
-		multiScroll(nowindex);
-		setTimeout("ismoving = false;", 200);
+		if(flag){
+			ismoving=true;
+			makeActive(nowindex);
+			multiScroll(nowindex);
+			setTimeout("ismoving = false;", 200);
+		}
 	}
 }
 
 $(document).ready(function(){
 	$("a.top").click(function(){
 		if (!ismoving){
-			ismoving=true;
-			nowindex=$(this).index();
-			makeActive(nowindex);
-			multiScroll(nowindex);
-			setTimeout("ismoving = false;", 200);
+			if(nowindex!=$(this).index()){
+				nowindex=$(this).index();
+				ismoving=true;
+				makeActive(nowindex);
+				multiScroll(nowindex);
+				setTimeout("ismoving = false;", 200);
+			}
 		}
 	});
 			
