@@ -74,6 +74,13 @@ function multiScroll(nowindex){
 	});
 }
 
+document.onkeydown = function(ev){
+	var oEvent = ev || event;
+	if(oEvent.keyCode==38 || oEvent.keyCode==40){
+		return false
+	}
+}
+
 </script>
 
 <style> 
