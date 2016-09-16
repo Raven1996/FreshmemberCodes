@@ -21,7 +21,7 @@ var scrollFunc=function(e){
 	
 	if (!ismoving){
 		var flag=0;
-		if (t>0){
+		if ((t>0 && t!=3) || (t==-3)){
 			if(nowindex>0){
 				nowindex--;
 				flag=1;
